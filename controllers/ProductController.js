@@ -1,30 +1,24 @@
-const getAllProducts = (req, res) => {
-    res.send("Fetching all products");
+// Controller Layer (Handles request & response)
+
+const productService = require("../services/productService");
+
+const getProducts = (req, res) => {
+    const result = productService.getAllProducts();
+    res.send(result);
 };
 
-const addProduct = (req, res) => {
-    res.send("Adding a new product");
+const getProduct = (req, res) => {
+    const result = productService.getProductById(req.params.id);
+    res.send(result);
 };
 
-const getProductById = (req, res) => {
-    const id = req.params.id;
-    res.send(`Fetching product with ID: ${id}`);
-};
-
-const updateProduct = (req, res) => {
-    const id = req.params.id;
-    res.send(`Updating product with ID: ${id}`);
-};
-
-const deleteProduct = (req, res) => {
-    const id = req.params.id;
-    res.send(`Deleting product with ID: ${id}`);
+const createProduct = (req, res) => {
+    const result = productService.addProduct();
+    res.send(result);
 };
 
 module.exports = {
-    getAllProducts,
-    addProduct,
-    getProductById,
-    updateProduct,
-    deleteProduct
+    getProducts,
+    getProduct,
+    createProduct
 };
