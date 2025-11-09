@@ -1,10 +1,10 @@
 // Controller Layer (Handles request & response)
 
+const path = require("path");
 const productService = require("../services/productService");
 
 const getProducts = (req, res) => {
-    const result = productService.getAllProducts();
-    res.send(result);
+    res.sendFile(path.join(__dirname, "../view/products.html"));
 };
 
 const getProduct = (req, res) => {
